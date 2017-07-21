@@ -8,6 +8,34 @@ var fs = require("fs");
 
 var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/HackerEarth");
+
+var schema1 = new mongoose.Schema({
+    CardNumber: String,
+    Surname: String,
+    Name: String,
+    UserType: String,
+    Liscense: String
+});
+
+var model1 = mongoose.model("liscense", schema1);
+
+var schema2 = new mongoose.Schema({
+    CardNumber: String,
+    LayoutId: Number,
+    TransitDate: String,
+    TransitStatus: String,
+    Surname: String,
+    Name: String,
+    Terminal: String,
+    Direction: Number,
+    STR_DIRECTION: String,
+    UserType: String,
+    Site: Number,
+    InsertDate: String
+});
+
+var model2 = mongoose.model("miningclocks", schema2);
+
 // import schema for generating random madlogs
 var loggerGenerator = require('./schema2.js');
 var dream = loggerGenerator.dream;
@@ -18,13 +46,18 @@ function sendGeneratedMessagesAtRandomInterval(durationCoeff) {
     if(count<5) {
         durationCoeff = durationCoeff || 1;
         setTimeout(function () {
-            MessageBodys.push(dream
-                .useSchema('Identities')
+                var obj = dream.useSchema('Identities')
                 .generateRnd()
-                .output());
-            console.log("making"+count);
-            count++;
-            sendGeneratedMessagesAtRandomInterval(durationCoeff);
+                .output()
+            MessageBodys.push(obj);
+            var doc = new model1(obj);
+            doc.save(function(err){
+                if(!err){
+                    console.log("making"+count);
+                    count++;
+                    sendGeneratedMessagesAtRandomInterval(durationCoeff);
+                }
+            });            
         }, chance.millisecond() * durationCoeff);
     }
     else{
@@ -38,13 +71,17 @@ function sendGeneratedMessagesAtRandomInterval(durationCoeff) {
             if(counts<5) {
                 durationCoeff = durationCoeff || 1;
                 setTimeout(function () {
-                    MessageBody.push(dream
+                    var obj2 = dream
                         .useSchema('MiningClocks')
                         .generateRnd()
-                        .output());
-                    console.log("making"+counts);
-                    counts++;
-                    sendGeneratedMessagesAtRandomIntervals(durationCoeff);
+                        .output()
+                    var doc2 = new model2(obj2);
+                    doc2.save(function(err){
+                        MessageBody.push(obj2);
+                        console.log("making"+counts);
+                        counts++;
+                        sendGeneratedMessagesAtRandomIntervals(durationCoeff);
+                    });                    
                 }, chance.millisecond() * durationCoeff);
             }
             else{

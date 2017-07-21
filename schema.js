@@ -71,7 +71,7 @@ dream.customType('SiteType', function(helper) {
 });
 
 dream.customType('TerminalType', function(helper){
-    return terminals[helper.site];
+    return helper.oneOf(terminals[helper.site]);
 });
 
 dream.schema('MiningClocks', {
