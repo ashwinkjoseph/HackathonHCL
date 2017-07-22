@@ -64,14 +64,22 @@ dream.customType('LayoutIdType', function(helper) {
     return 2;
 });
 
-dream.customType('SiteType', function(helper) {
-    var site = helper.oneOf(Object.keys(terminals));
-    helper.site = site;
-    return helper.site;
+// dream.customType('SiteType', function(helper) {
+//     var site = helper.oneOf(Object.keys(terminals));
+//     helper.site = site;
+//     return helper.site;
+// });
+
+dream.customType("SiteType", function(helper){
+    return helper.identity.site;
+});
+
+dream.customType('LiscenseType', function(helper) {
+    return helper.identity.site;
 });
 
 dream.customType('TerminalType', function(helper){
-    return helper.oneOf(terminals[helper.site]);
+    return helper.oneOf(terminals[helper.identity.site]);
 });
 
 dream.schema('MiningClocks', {

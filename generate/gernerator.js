@@ -14,7 +14,8 @@ var schema1 = new mongoose.Schema({
     Surname: String,
     Name: String,
     UserType: String,
-    Liscense: String
+    Liscense: String,
+    Site: String
 });
 
 var model1 = mongoose.model("liscense", schema1);

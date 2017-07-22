@@ -1,6 +1,6 @@
 
 var dream = require('dreamjs');
-
+var sites = ["27", "1", "2", "3", "4"];
 var lastcardNumberCache = {};
 var cardNumberGenerator = function(college, helper) {
     if (!lastcardNumberCache[college]) {
@@ -34,12 +34,17 @@ dream.customType('LiscenseType', function(helper) {
     return helper.oneOf(LiscenseTypes);
 });
 
+dream.customType('SiteType', function(helper) {
+    return helper.oneOf(sites);
+});
+
 dream.schema('Identities', {
     CardNumber: 'cardNumberType',
     Surname: 'SurnameType',
     Name: 'NameType',
     UserType: 'UserType',
-    Liscense: 'LiscenseType'
+    Liscense: 'LiscenseType',
+    site: "SiteType"
 });
 
 module.exports = {
