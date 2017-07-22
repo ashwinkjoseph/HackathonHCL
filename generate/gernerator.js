@@ -15,7 +15,6 @@ var schema1 = new mongoose.Schema({
     Name: String,
     UserType: String,
     Liscense: String,
-    Site: String
 });
 
 var model1 = mongoose.model("liscense", schema1);
@@ -44,7 +43,7 @@ var MessageBodys = require("./messagebody.js");
 var count = 0;
 
 function sendGeneratedMessagesAtRandomInterval(durationCoeff) {
-    if(count<5) {
+    if(count<100) {
         durationCoeff = durationCoeff || 1;
         setTimeout(function () {
                 var obj = dream.useSchema('Identities')
@@ -69,7 +68,7 @@ function sendGeneratedMessagesAtRandomInterval(durationCoeff) {
         var counts = 0;
 
         function sendGeneratedMessagesAtRandomIntervals(durationCoeff) {
-            if(counts<5) {
+            if(counts<200) {
                 durationCoeff = durationCoeff || 1;
                 setTimeout(function () {
                     var obj2 = dream

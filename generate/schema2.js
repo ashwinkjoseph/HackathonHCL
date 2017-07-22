@@ -24,7 +24,7 @@ dream.customType('SurnameType', function(helper) {
     return helper.oneOf(Surnames);
 });
 
-let userTypes = ["employee", "external personall"];
+let userTypes = ["external personall", "employee", "employee"];
 dream.customType('UserType', function(helper) {
     return helper.oneOf(userTypes);
 });

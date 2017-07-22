@@ -1,7 +1,7 @@
 
 var dream = require("dreamjs");
 var MessageBody = require("./messagebody.js");
-
+var moment = require("moment");
 var terminals = {
     "27":["TRCH01"],
     "1":["Thebu"],
@@ -48,16 +48,28 @@ dream.customType('StrDirectionType', function(helper) {
 });
 
 function randomDate(start, end) {
-    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+    return moment(start.valueOf() + Math.random() * (end.valueOf() - start.valueOf()));
 }
 
+// dream.customType('TransitDateType', function(helper) {
+//     helper.date = randomDate(new Date(2017, 0, 1, 0, 10), new Date(2017, 0, 1, 0, 25));
+//     return helper.date.toISOString();
+// });
+
+// dream.customType('insertDateType', function(helper) {
+//     var date = randomDate(helper.date, new Date(helper.date.getFullYear(), helper.date.getMonth(), helper.date.getDay(), helper.date.getHours(), (helper.date.getMinutes()+15)));
+//     return date.toISOString();
+// });
+
 dream.customType('TransitDateType', function(helper) {
-    helper.date = randomDate(new Date(2017, 0, 1, 0, 10), new Date(2017, 0, 1, 0, 25));
+    var d1 = moment();
+    helper.date = randomDate(d1, d1.add(15, 'm'));
     return helper.date.toISOString();
 });
 
 dream.customType('insertDateType', function(helper) {
-    return randomDate(helper.date, new Date(helper.date.getFullYear(), helper.date.getMonth(), helper.date.getDay(), helper.date.getHours(), (helper.date.getMinutes()+15))).toISOString();
+    var date = randomDate(helper.date, helper.date.add(15, 'm'));
+    return date.toISOString();
 });
 
 dream.customType('LayoutIdType', function(helper) {
