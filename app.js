@@ -17,10 +17,10 @@ var app = express();
 
 require('./config/express')(app, config);
 
-app.get('/*', function(req, res){
-	var err = new Error('404 - Page Not Found');
-	res.send(err);
-});
+// app.get('/*', function(req, res){
+// 	var err = new Error('404 - Page Not Found');
+// 	res.send(err);
+// });
 
 app.listen(config.port, function () {
   console.log('Express server listening on port ' + config.port);

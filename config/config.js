@@ -9,7 +9,7 @@ var config = {
       name: 'attendance'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://127.0.0.1/attendancedb'
+    db: 'mongodb://127.0.0.1/HackerEarth'
   },
 
   test: {
@@ -18,7 +18,7 @@ var config = {
       name: 'attendance'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/attendance-test'
+    db: 'mongodb://localhost/HackerEarth'
   },
 
   production: {
@@ -27,7 +27,7 @@ var config = {
       name: 'attendance'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/attendance-production'
+    db: 'mongodb://localhost/HackerEarth'
   }
 };
 

@@ -1,0 +1,39 @@
+<% include header %>
+    <div class="container" style="margin-top:50px">
+        <div class="page-header">
+            <h3>Sign In </h3>
+        </div>
+        <form class="form-horizontal" method="POST" id="for" action="/login">
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="email">Card Number</label>
+                <div class="col-sm-7">
+                    <input class="form-control" type="number" name="cardNumber" id="cardNumber" placeholder="Card Number" autofocus required>
+                </div>
+            </div>
+            <div id="time"></div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-7">
+                    <button class="col-sm-3 btn btn-primary" type="button" id="btn">
+            <i class="fa fa-user">Login</i>
+          </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="com-sm-offset-3 col-sm-7">
+                    <hr>
+                </div>
+            </div>
+    </div>
+        <script>
+            var btn = document.getElementById("btn");
+            btn.addEventListener('click', function(){
+                var dt = new Date();
+                var el = document.createElement('input');
+                el.type="text";
+                el.value = dt.toISOString();
+                el.name="transitDate";
+                document.getElementById("time").appendChild(el);
+                document.getElementById("for").submit();
+            });
+        </script>
+    <% include footer %>
